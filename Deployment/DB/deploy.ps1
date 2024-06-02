@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Apply Persistent Volume and Claim
 kubectl apply -f persistent-volume-claim.yaml
 
