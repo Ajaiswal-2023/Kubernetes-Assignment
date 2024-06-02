@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-init-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: db-init-container
+        image: anujais2017/init-db:1.0.31
+        env:
+        - name: DB_HOST
+          value: "db-service"
+        - name: POSTGRES_DB
+          value: "ecom-db"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_PASSWORD
+        command: ["/scripts/init-db.sh"]
+      restartPolicy: OnFailure

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  POSTGRES_DB: ecom-db
+  DB_HOST: "localhost"
+  DB_PORT: "5432"

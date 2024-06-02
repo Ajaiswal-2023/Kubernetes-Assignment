@@ -1,0 +1,24 @@
+#Storage Class
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: custom-standard
+provisioner: pd.csi.storage.gke.io
+reclaimPolicy: Retain              
+parameters:
+  type: pd-standard
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+   app: postgres
+  name: db-pvc
+spec:
+  storageClassName: custom-standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

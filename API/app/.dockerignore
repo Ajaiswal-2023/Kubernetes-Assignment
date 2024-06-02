@@ -1,0 +1,5 @@
+build_and_push_docker_image.ps1
+VERSION
+Dockerfile
+.dockerignore
+node_modules
