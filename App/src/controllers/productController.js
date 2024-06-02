@@ -4,6 +4,14 @@ const responseHandler = require('../utils/responseHandler');
 const getAllProducts = async (req, res) => {
     try {
         const { rows } = await pool.query('SELECT * FROM products;');
+
+        // Simulate a high CPU load by performing more complex and numerous computations
+        for (let i = 0; i < 1e8; i++) {
+            Math.sqrt(i);
+            Math.log(i + 1);
+            Math.exp(i % 10);
+          }
+
         responseHandler.success(res, rows);
     } catch (error) {
         responseHandler.error(res, error.message);

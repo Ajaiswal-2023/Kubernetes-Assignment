@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: db-init-container
-        image: anujais2017/init-db:1.0.31
+        image: anujais2017/init-db:1.0.33
         env:
         - name: DB_HOST
           value: "db-service"

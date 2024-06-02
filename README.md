@@ -14,6 +14,9 @@ This project contains Kubernetes manifests to deploy a PostgreSQL database and N
   1. API: https://hub.docker.com/r/anujais2017/ecom-api-service image contains a node.js application to connect to database.
   2. DB: https://hub.docker.com/r/anujais2017/init-db  Image to initialize my postgre database using k8s job.
 
+ ## Demo teams recording
+  https://nagarro-my.sharepoint.com/personal/anupam_jaiswal_nagarro_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fanupam%5Fjaiswal%5Fnagarro%5Fcom%2FDocuments%2FRecordings%2FNAGP%20Kubernetes%20assignment%20demo%2D20240602%5F154848%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E1c3c5781%2Ddde7%2D47b6%2Db7fa%2D50ac7b864715&ga=1
+
 ## Setup Instructions
 
 1. **Create GKE Cluster**:
@@ -23,13 +26,11 @@ This project contains Kubernetes manifests to deploy a PostgreSQL database and N
 2. **Connect to the Cluster**:
     gcloud container clusters create <cluster-name> --num-nodes=3 --zone=us-central1-a
 
-3. Change the current directory to \Deployment: cd \Deployment
+3. **Deploy Database**: please run the powershell scripts \Deployment\DB\deploy.ps1
 
-4. **Deploy Database**: please run the powershell scripts \DB\deploy.ps1
+4. **Deploy Node.js application**: please run the powershell scripts \Deployment\API\deploy.ps1
 
-5. **Deploy Node.js application**: please run the powershell scripts \API\deploy.ps1
-
-6. **Verify Deployment**:
+5. **Verify Deployment**:
     ```
     kubectl get statefulsets
     kubectl get pods
@@ -58,4 +59,4 @@ Run the .\hpa-test.ps1 to increase the load on the api-serivce pods to trigger t
 - The database is accessible internally within the cluster using the service name `db-service` and port `5432`.
 
 ## Accessing the API service:
-- An api service can be accessed using swagger spec by http://<api-service-external-ip>/api-doc/, using the swagger spec, one can get/insert into database. or simply hit the http://<api-service-external-ip>/api/users/ or http://<api-service-external-ip>/api/products/ in browser.
+- Api service can be accessed using swagger spec by http://api-service-external-ip/api-doc/, using the swagger spec, one can get/insert into database. or simply hit the http://api-service-external-ip/api/users/ or http://api-service-external-ip/api/products/ in browser.
